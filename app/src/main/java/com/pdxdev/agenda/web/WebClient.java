@@ -1,4 +1,4 @@
-package com.pdxdev.agenda;
+package com.pdxdev.agenda.web;
 
 import android.support.annotation.Nullable;
 
@@ -19,11 +19,6 @@ public class WebClient {
     public String post(String json){
         String endereco = "https://www.caelum.com.br/mobile";
         return realizaConexao(json, endereco);
-    }
-
-    public void insere(String json) {
-        String endereco = "http://192.168.25.16:8080/api/aluno";
-        realizaConexao(json, endereco);
     }
 
     @Nullable

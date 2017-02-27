@@ -30,22 +30,4 @@ public class AlunoConverter {
 
         return js.toString();
     }
-
-    public String converteParaJSONCompleto(Aluno aluno) {
-        JSONStringer js = new JSONStringer();
-        try {
-            js.object()
-                    .key("id").value(aluno.getId())
-                    .key("nome").value(aluno.getNome())
-                    .key("endereco").value(aluno.getEndereco())
-                    .key("telefone").value(aluno.getTelefone())
-                    .key("site").value(aluno.getSite())
-                    .key("nota").value(aluno.getNota())
-                    .key("caminhoFoto").value(aluno.getCaminhoFoto())
-                    .endObject();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return js.toString();
-    }
 }
