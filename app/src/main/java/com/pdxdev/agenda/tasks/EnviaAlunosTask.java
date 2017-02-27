@@ -1,4 +1,4 @@
-package com.pdxdev.agenda;
+package com.pdxdev.agenda.tasks;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import com.pdxdev.agenda.WebClient;
 import com.pdxdev.agenda.converter.AlunoConverter;
 import com.pdxdev.agenda.dao.AlunoDAO;
 import com.pdxdev.agenda.modelo.Aluno;
