@@ -39,4 +39,5 @@ dependencies {
     compile 'com.android.support:support-v4:25.2.0'
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
     compile 'com.squareup.retrofit2:converter-jackson:2.2.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
 }
