@@ -21,9 +21,14 @@ import android.widget.Toast;
 import com.pdxdev.agenda.adapter.AlunosAdapter;
 import com.pdxdev.agenda.dao.AlunoDAO;
 import com.pdxdev.agenda.dto.AlunoSync;
+import com.pdxdev.agenda.event.AtualizaListaAlunoEvent;
 import com.pdxdev.agenda.modelo.Aluno;
 import com.pdxdev.agenda.retrofit.RetrofitInicializador;
 import com.pdxdev.agenda.tasks.EnviaAlunosTask;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
@@ -35,11 +40,14 @@ public class ListaAlunosActivity extends AppCompatActivity {
 
     private ListView listaAlunos;
     private SwipeRefreshLayout swipe;
+    private EventBus eventBus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_alunos);
+
+        eventBus = EventBus.getDefault();
 
         listaAlunos = (ListView) findViewById(R.id.lista_alunos);
         swipe = (SwipeRefreshLayout) findViewById(R.id.swipe_lista_aluno);
@@ -75,10 +83,22 @@ public class ListaAlunosActivity extends AppCompatActivity {
         buscaAlunos();
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void atualizaListaAlunoEvent(AtualizaListaAlunoEvent event){
+        carregaLista();
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
+        eventBus.register(this);
         carregaLista();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        eventBus.unregister(this);
     }
 
     private void buscaAlunos() {
