@@ -1,5 +1,6 @@
 package com.pdxdev.agenda.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
@@ -8,6 +9,7 @@ import java.io.Serializable;
  * Created by allysson.matheus on 05/10/2016.
  */
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Aluno implements Serializable {
     private String id;
     private String nome;
