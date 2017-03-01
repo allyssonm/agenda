@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -65,6 +66,12 @@ public class ListaAlunosActivity extends AppCompatActivity {
     private void carregaLista() {
         AlunoDAO dao = new AlunoDAO(this);
         List<Aluno> alunos = dao.buscaAlunos();
+
+        for (Aluno aluno :
+                alunos) {
+            Log.i("id do aluno", String.valueOf(aluno.getId()));
+        }
+
         dao.close();
 
         AlunosAdapter adapter = new AlunosAdapter(this, alunos);
@@ -79,7 +86,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.menu_enviar_notas:
                 new EnviaAlunosTask(this).execute();
                 break;
@@ -109,8 +116,8 @@ public class ListaAlunosActivity extends AppCompatActivity {
         itemLigar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
-                if(ActivityCompat.checkSelfPermission(ListaAlunosActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
-                    ActivityCompat.requestPermissions(ListaAlunosActivity.this, new String []{Manifest.permission.CALL_PHONE}, 123);
+                if (ActivityCompat.checkSelfPermission(ListaAlunosActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(ListaAlunosActivity.this, new String[]{Manifest.permission.CALL_PHONE}, 123);
                 } else {
                     Intent intentLigar = new Intent(Intent.ACTION_CALL);
                     intentLigar.setData(Uri.parse("tel:" + aluno.getTelefone()));
@@ -137,7 +144,9 @@ public class ListaAlunosActivity extends AppCompatActivity {
         MenuItem itemSite = menu.add("Visitar site");
         Intent intentSite = new Intent(Intent.ACTION_VIEW);
         String site = aluno.getSite();
-        if(!site.startsWith("http://")){ site = "http://" + site; }
+        if (!site.startsWith("http://")) {
+            site = "http://" + site;
+        }
         intentSite.setData(Uri.parse(site));
         itemSite.setIntent(intentSite);
 
