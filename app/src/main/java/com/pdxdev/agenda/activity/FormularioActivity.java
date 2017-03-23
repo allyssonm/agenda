@@ -1,4 +1,4 @@
-package com.pdxdev.agenda;
+package com.pdxdev.agenda.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.pdxdev.agenda.helper.FormularioHelper;
+import com.pdxdev.agenda.R;
 import com.pdxdev.agenda.dao.AlunoDAO;
 import com.pdxdev.agenda.modelo.Aluno;
 import com.pdxdev.agenda.retrofit.RetrofitInicializador;

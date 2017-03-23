@@ -1,6 +1,5 @@
-package com.pdxdev.agenda;
+package com.pdxdev.agenda.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.pdxdev.agenda.R;
+import com.pdxdev.agenda.activity.ProvasActivity;
 import com.pdxdev.agenda.modelo.Prova;
 
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package com.pdxdev.agenda;
+package com.pdxdev.agenda.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.pdxdev.agenda.R;
 import com.pdxdev.agenda.modelo.Prova;
 
 public class DetalhesProvaActivity extends AppCompatActivity {

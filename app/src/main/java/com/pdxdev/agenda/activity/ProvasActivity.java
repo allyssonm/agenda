@@ -1,21 +1,14 @@
-package com.pdxdev.agenda;
+package com.pdxdev.agenda.activity;
 
-import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
 
+import com.pdxdev.agenda.fragment.DetalhesProvaFragment;
+import com.pdxdev.agenda.fragment.ListaProvasFragment;
+import com.pdxdev.agenda.R;
 import com.pdxdev.agenda.modelo.Prova;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class ProvasActivity extends AppCompatActivity {
 

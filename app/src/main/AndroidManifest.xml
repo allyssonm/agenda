@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ListaAlunosActivity"
+            android:name=".activity.ListaAlunosActivity"
             android:label="Agenda">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".FormularioActivity"
+            android:name=".activity.FormularioActivity"
             android:label="Formulario" />
 
         <receiver android:name=".receiver.SMSReceiver">
@@ -35,16 +35,16 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".ProvasActivity" />
-        <activity android:name=".DetalhesProvaActivity" />
-        <activity android:name=".ProvasTabletActivity" />
-        <activity android:name=".MapaActivity" />
+        <activity android:name=".activity.ProvasActivity" />
+        <activity android:name=".activity.DetalhesProvaActivity" />
+        <activity android:name=".activity.ProvasTabletActivity" />
+        <activity android:name=".activity.MapaActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".TesteVolley"></activity>
+        <activity android:name=".services.TesteVolley"></activity>
 
         <service
             android:name=".firebase.AgendaInstanceIDService">

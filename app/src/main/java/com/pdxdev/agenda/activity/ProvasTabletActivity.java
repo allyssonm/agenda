@@ -1,7 +1,9 @@
-package com.pdxdev.agenda;
+package com.pdxdev.agenda.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.pdxdev.agenda.R;
 
 public class ProvasTabletActivity extends AppCompatActivity {
 

@@ -1,9 +1,12 @@
-package com.pdxdev.agenda;
+package com.pdxdev.agenda.activity;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.pdxdev.agenda.fragment.MapaFragment;
+import com.pdxdev.agenda.R;
 
 public class MapaActivity extends AppCompatActivity {
 

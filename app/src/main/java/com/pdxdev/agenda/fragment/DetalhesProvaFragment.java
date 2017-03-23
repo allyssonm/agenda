@@ -1,4 +1,4 @@
-package com.pdxdev.agenda;
+package com.pdxdev.agenda.fragment;
 
 
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.pdxdev.agenda.R;
 import com.pdxdev.agenda.modelo.Prova;
 
 public class DetalhesProvaFragment extends Fragment {
