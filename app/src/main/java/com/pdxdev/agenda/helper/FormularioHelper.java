@@ -1,4 +1,4 @@
-package com.pdxdev.agenda;
+package com.pdxdev.agenda.helper;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -6,6 +6,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 
+import com.pdxdev.agenda.R;
+import com.pdxdev.agenda.activity.FormularioActivity;
 import com.pdxdev.agenda.modelo.Aluno;
 
 /**

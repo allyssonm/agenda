@@ -1,11 +1,8 @@
-package com.pdxdev.agenda;
+package com.pdxdev.agenda.fragment;
 
-import android.*;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -17,6 +14,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.pdxdev.agenda.services.Localizador;
 import com.pdxdev.agenda.dao.AlunoDAO;
 import com.pdxdev.agenda.modelo.Aluno;
 

@@ -1,4 +1,4 @@
-package com.pdxdev.agenda;
+package com.pdxdev.agenda.activity;
 
 import android.Manifest;
 import android.content.Intent;
@@ -18,6 +18,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.pdxdev.agenda.R;
+import com.pdxdev.agenda.test.TesteVolley;
 import com.pdxdev.agenda.adapter.AlunosAdapter;
 import com.pdxdev.agenda.dao.AlunoDAO;
 import com.pdxdev.agenda.dto.AlunoSync;

@@ -1,4 +1,4 @@
-package com.pdxdev.agenda;
+package com.pdxdev.agenda.services;
 
 import android.content.Context;
 import android.location.Location;
