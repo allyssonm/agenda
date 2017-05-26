@@ -1,9 +1,11 @@
 package com.pdxdev.agenda.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,6 +39,8 @@ public class FormularioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario);
 
+        final Context context = this;
+
         helper = new FormularioHelper(this);
 
         Intent intent = getIntent();
@@ -52,7 +56,8 @@ public class FormularioActivity extends AppCompatActivity {
                 Intent intentCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 caminhoFoto = getExternalFilesDir(null) + "/" + System.currentTimeMillis() + ".jpg";
                 File arquivoFoto = new File(caminhoFoto);
-                intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(arquivoFoto));
+                //intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(arquivoFoto));
+                intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", arquivoFoto));
                 startActivityForResult(intentCamera, CODIGO_CAMERA);
             }
         });
