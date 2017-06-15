@@ -16,7 +16,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.pdxdev.agenda.R;
 import com.pdxdev.agenda.sinc.AlunoSincronizador;
@@ -25,7 +24,6 @@ import com.pdxdev.agenda.adapter.AlunosAdapter;
 import com.pdxdev.agenda.dao.AlunoDAO;
 import com.pdxdev.agenda.event.AtualizaListaAlunoEvent;
 import com.pdxdev.agenda.modelo.Aluno;
-import com.pdxdev.agenda.retrofit.RetrofitInicializador;
 import com.pdxdev.agenda.tasks.EnviaAlunosTask;
 
 import org.greenrobot.eventbus.EventBus;
@@ -33,10 +31,6 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class ListaAlunosActivity extends AppCompatActivity {
 
@@ -201,21 +195,12 @@ public class ListaAlunosActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
 
-                Call<Void> call = new RetrofitInicializador().getAlunoService().deleta(aluno.getId());
-                call.enqueue(new Callback<Void>() {
-                    @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
-                        AlunoDAO dao = new AlunoDAO(ListaAlunosActivity.this);
-                        dao.deleta(aluno);
-                        dao.close();
-                        carregaLista();
-                    }
+                AlunoDAO dao = new AlunoDAO(ListaAlunosActivity.this);
+                dao.deleta(aluno);
+                dao.close();
+                carregaLista();
 
-                    @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
-                        Toast.makeText(ListaAlunosActivity.this, "Não foi possível remover o aluno", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                alunoSincronizador.deleta(aluno);
 
                 return false;
             }
