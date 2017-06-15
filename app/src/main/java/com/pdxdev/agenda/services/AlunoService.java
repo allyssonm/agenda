@@ -27,4 +27,7 @@ public interface AlunoService {
 
     @DELETE("aluno/{id}")
     Call<Void> deleta(@Path("id") String id);
+
+    @GET("aluno/diff")
+    Call<AlunoSync> novos(@Header("datahora") String versao);
 }

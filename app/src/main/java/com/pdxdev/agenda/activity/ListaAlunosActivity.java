@@ -19,10 +19,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.pdxdev.agenda.R;
+import com.pdxdev.agenda.sinc.AlunoSincronizador;
 import com.pdxdev.agenda.test.TesteVolley;
 import com.pdxdev.agenda.adapter.AlunosAdapter;
 import com.pdxdev.agenda.dao.AlunoDAO;
-import com.pdxdev.agenda.dto.AlunoSync;
 import com.pdxdev.agenda.event.AtualizaListaAlunoEvent;
 import com.pdxdev.agenda.modelo.Aluno;
 import com.pdxdev.agenda.retrofit.RetrofitInicializador;
@@ -40,6 +40,7 @@ import retrofit2.Response;
 
 public class ListaAlunosActivity extends AppCompatActivity {
 
+    private final AlunoSincronizador alunoSincronizador = new AlunoSincronizador(this);
     private ListView listaAlunos;
     private SwipeRefreshLayout swipe;
     private EventBus eventBus;
@@ -57,7 +58,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                buscaAlunos();
+                alunoSincronizador.buscaTodos();
             }
         });
 
@@ -82,11 +83,13 @@ public class ListaAlunosActivity extends AppCompatActivity {
         });
 
         registerForContextMenu(listaAlunos);
-        buscaAlunos();
+        alunoSincronizador.buscaTodos();
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void atualizaListaAlunoEvent(AtualizaListaAlunoEvent event){
+        if(swipe.isRefreshing())
+            swipe.setRefreshing(false);
         carregaLista();
     }
 
@@ -101,28 +104,6 @@ public class ListaAlunosActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         eventBus.unregister(this);
-    }
-
-    private void buscaAlunos() {
-        Call<AlunoSync> call = new RetrofitInicializador().getAlunoService().lista();
-
-        call.enqueue(new Callback<AlunoSync>() {
-            @Override
-            public void onResponse(Call<AlunoSync> call, Response<AlunoSync> response) {
-                AlunoSync alunoSync = response.body();
-                AlunoDAO dao = new AlunoDAO(ListaAlunosActivity.this);
-                dao.sincroniza(alunoSync.getAlunos());
-                dao.close();
-                carregaLista();
-                swipe.setRefreshing(false);
-            }
-
-            @Override
-            public void onFailure(Call<AlunoSync> call, Throwable t) {
-                Log.e("onFailure chamado", t.getMessage());
-                swipe.setRefreshing(false);
-            }
-        });
     }
 
     private void carregaLista() {
